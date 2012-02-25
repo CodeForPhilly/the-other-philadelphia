@@ -3,6 +3,7 @@ source :rubygems
 gem "sinatra", :require => "sinatra/base"
 gem "koala"
 gem "thin"
+gem "haml"
 
 group :development do
   gem "foreman"

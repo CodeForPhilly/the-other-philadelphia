@@ -36,7 +36,7 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     #  '<a href="/login">Login</a>'
     #end
 
-    @is_logged_in = session["access_token"].nil?
+    @is_logged_in = session["access_token"]
     haml :index, :layout => :layout
   end
 

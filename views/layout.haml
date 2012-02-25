@@ -11,4 +11,11 @@
     .row
       .span12
         %h1 Hi There
+
+    .row
+      .span12
+        - if @is_logged_in
+          %a{ :href => '/logout' } Logout
+        - else
+          %a{ :href => '/login' } Login
     = yield
