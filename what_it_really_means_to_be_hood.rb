@@ -3,6 +3,8 @@ $:.unshift(File.dirname(__FILE__))
 require "sinatra/base"
 require "yaml"
 require "koala"
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class WhatItReallyMeansToBeHoodApp < Sinatra::Base
   set :show_exceptions, false
@@ -55,7 +57,6 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
 
   #method to handle the redirect from facebook back to you
   get "/callback" do
-    p session["oauth"]
     session["access_token"] = session["oauth"].get_access_token(params[:code])
     redirect "/"
   end
