@@ -96,3 +96,8 @@ h1 {
     color: #FF0;
     font-weight: normal;
   }
+
+#login {
+  margin: 20px;
+  text-align: center;
+}

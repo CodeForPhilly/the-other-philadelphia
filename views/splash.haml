@@ -1,0 +1,7 @@
+#friends
+  - @friends.each do |friend|
+    .friend
+      .picture
+        - friend[:statistics].each do |tag|
+          %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
+

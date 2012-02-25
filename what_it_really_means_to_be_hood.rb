@@ -40,9 +40,13 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     if session["access_token"]
       friends_loader = FriendsLoader.new session["access_token"], stats
       @friends = friends_loader.get_friends
+    else
+      people = 10.times.collect { Hash.new }
+      assigner = StatisticsAssigner.new people, stats
+      @friends = assigner.assign
     end
 
-    haml :index, :layout => :layout
+    haml (@is_logged_in ? :index : :splash), :layout => :layout
   end
 
   get "/login" do
