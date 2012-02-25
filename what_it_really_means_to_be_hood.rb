@@ -27,14 +27,13 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
     @violent_crime_rate = stats["violent_crime"]["rate"]
     @unemployment_rate = stats["unemployment"]["rate"]
-    @graduation_rate  = stats["graduation"]["rate"]
+    @dropout_rate  = stats["dropout"]["rate"]
     @poverty_rate  = stats["poverty"]["rate"]
-    @dropout_rate = 1 - @graduation_rate
     @is_logged_in = session["access_token"]
     @mappings = {
       "violent_crime" => "important",
       "unemployment" => "warning",
-      "graduation" => "success",
+      "dropout" => "success",
       "poverty" => "info"
     }
 

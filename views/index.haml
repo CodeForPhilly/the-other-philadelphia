@@ -12,9 +12,9 @@
     %h3= "%2.1f" % (@poverty_rate * 100)
     %span.label.label-info Poverty
 
-#friends
+%ul.thumbnails#friends
   - @friends.each do |friend|
-    .friend
+    %li.thumbnail.friend.span2
       %h3= friend.name
       .picture{ :style => "background-image: url('#{friend.picture}');"}
         - friend.tags.each do |tag|

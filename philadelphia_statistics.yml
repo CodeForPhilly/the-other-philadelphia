@@ -8,6 +8,6 @@ statistics:
   poverty:
     rate: 0.25
     source: http://www.pewtrusts.org/our_work_report_detail.aspx?id=329110
-  graduation:
-    rate: 0.58
+  dropout:
+    rate: 0.42
     source: http://www.countyhealthrankings.org/pennsylvania/philadelphia
