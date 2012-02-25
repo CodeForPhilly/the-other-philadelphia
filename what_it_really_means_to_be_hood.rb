@@ -3,7 +3,10 @@ $:.unshift(File.dirname(__FILE__))
 require "sinatra/base"
 require "yaml"
 require "koala"
-require 'openssl'
+require "openssl"
+
+require "models/statistics_assigner"
+
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class WhatItReallyMeansToBeHoodApp < Sinatra::Base
@@ -40,6 +43,12 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
       # Create a hash of friend's names and profile pictures
       friendsPairs = friends.collect{|friend| friend["name"]}.zip(@photos)
       friendsHash = Hash[friendsPairs]
+
+      # Assignments
+      assigner = StatisticsAssigner.new friendsPairs, @stats
+      assignments = assigner.assign
+
+      p assignments
 
       "Size: #{@photos.length}"
     end
