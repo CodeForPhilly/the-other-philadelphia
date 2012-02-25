@@ -67,6 +67,10 @@ h1 {
   color: #FF0;
 }
 
+#organizations-logos a {
+  display: block;
+}
+
 #footer {
   text-align: center;
   border-top: 1px solid #999;
