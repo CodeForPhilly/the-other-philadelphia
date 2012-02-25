@@ -77,3 +77,24 @@ h1 {
   border-top: 1px solid #999;
   padding-top: 2em;
 }
+
+
+.friend {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 2px red solid;
+  padding: 0; 
+}
+  .friend .picture {
+    width: 200px;
+    height: 170px;
+    background-repeat: none;
+
+  }
+  .friend h3 {
+    color: white;
+  }
+
+
