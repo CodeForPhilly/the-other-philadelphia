@@ -1,0 +1,12 @@
+statistics:
+  unemployment:
+    rate: 0.10
+    source:"http://www.countyhealthrankings.org/pennsylvania/philadelphia"
+  violent_crime:
+    rate: 0.0146
+    source: "http://www.countyhealthrankings.org/pennsylvania/philadelphia"   poverty:
+    rate: 0.25
+    source: "http://www.pewtrusts.org/our_work_report_detail.aspx?id=329110"
+  graduation:
+    rate: 0.58
+    source: "http://www.countyhealthrankings.org/pennsylvania/philadelphia"
