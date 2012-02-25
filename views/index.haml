@@ -4,13 +4,13 @@
     %span.label.label-warning Unemployed
   .span3
     %h3= "%2.1f" % (@violent_crime_rate * 100)
-    %span.label.label-important Violent Crime
+    %span.label.label-important Violent Crime Victim
   .span3
     %h3= "%2.1f" % (@dropout_rate * 100)
-    %span.label.label-success Dropout
+    %span.label.label-success High School Dropout
   .span3
     %h3= "%2.1f" % (@poverty_rate * 100)
-    %span.label.label-info Poverty
+    %span.label.label-info Below US Census Poverty Threshold
 
 %ul.thumbnails#friends
   - @friends.each do |friend|

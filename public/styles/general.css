@@ -13,7 +13,6 @@ h1 {
   margin-bottom: 2em;
 }
 
-
 #banner {
   border-bottom: 1px solid #999;
   padding-bottom: 2em;
@@ -42,6 +41,7 @@ h1 {
   font-family: 'Crete Round';
   font-size: 500%;
   margin-bottom: 0.4em;
+  font-weight: normal;
 }
 
 #rates h3:after {
@@ -81,13 +81,11 @@ h1 {
 .friend.thumbnail {
   position: relative;
   display: inline-block;
-  width: 200px;
-  height: 120px;
   padding: 0; 
   border: none;
 }
   .friend .picture {
-    height: 170px;
+    height: 120px;
     background-repeat: no-repeat;
     padding: 0.4em;
   }

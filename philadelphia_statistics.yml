@@ -1,5 +1,5 @@
 statistics:
-  unemployment:
+  unemployed:
     rate: 0.10
     source: http://www.countyhealthrankings.org/pennsylvania/philadelphia
   violent_crime:
