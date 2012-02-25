@@ -3,7 +3,12 @@ $:.unshift(File.dirname(__FILE__))
 require "sinatra/base"
 require "yaml"
 require "koala"
-require 'openssl'
+require "openssl"
+
+require "models/person"
+require "models/statistics_assigner"
+require "models/friends_loader"
+
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class WhatItReallyMeansToBeHoodApp < Sinatra::Base
@@ -18,22 +23,24 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
   end
 
   get "/" do
-    @stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
-    @violent_crime_rate = @stats["violent_crime"]["rate"]
-    @unemployment_rate = @stats["unemployment"]["rate"]
-    @graduation_rate  = @stats["graduation"]["rate"]
-    @poverty_rate  = @stats["poverty"]["rate"]
-
+    stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
+    @violent_crime_rate = stats["violent_crime"]["rate"]
+    @unemployment_rate = stats["unemployment"]["rate"]
+    @graduation_rate  = stats["graduation"]["rate"]
+    @poverty_rate  = stats["poverty"]["rate"]
     @dropout_rate = 1 - @graduation_rate
-
     @is_logged_in = session["access_token"]
+
+    if session["access_token"]
+      friends_loader = FriendsLoader.new session["access_token"], stats
+      @friends = friends_loader.get_friends
+    end
+
     haml :index, :layout => :layout
   end
 
   get "/login" do
-    # generate a new oauth object with your app data and your callback url
     session["oauth"] = Koala::Facebook::OAuth.new(APP_ID, APP_CODE, SITE_URL + "callback")
-    # redirect to facebook to get your code
     redirect session["oauth"].url_for_oauth_code()
   end
 
