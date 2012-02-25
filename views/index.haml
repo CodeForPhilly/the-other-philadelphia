@@ -20,13 +20,6 @@
         .picture{ :style => "background-image: url('#{friend.picture}');"}
           - friend.tags.each do |tag|
             %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
-  #friends
-    - @friends.each do |friend|
-      .friend
-        %h3= friend.name
-        .picture{ :style => "background-image: url('#{friend.picture}');"}
-          - friend.tags.each do |tag|
-            %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
 
 #action.row
   .span12
