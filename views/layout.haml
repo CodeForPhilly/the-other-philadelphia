@@ -19,8 +19,23 @@
         #about The Other Philadelphia takes the stats of inner-city life, mashes them up with your Facebook friends, and shows what life might be like if you lived somewhere else.
     .row
       .span12
-        - if @is_logged_in
-          %a{ :href => '/logout' } Logout
-        - else
-          %a{ :href => '/login' } Login
-    = yield
+        #rates.row
+          .span3
+            %h3= "%2.1f" % (@unemployment_rate * 100)
+            %span.label.label-warning Unemployed
+          .span3
+            %h3= "%2.1f" % (@violent_crime_rate * 100)
+            %span.label.label-important Violent Crime
+          .span3
+            %h3= "%2.1f" % (@dropout_rate * 100)
+            %span.label.label-success Dropout
+          .span3
+            %h3= "%2.1f" % (@poverty_rate * 100)
+            %span.label.label-info Poverty
+
+
+        - if !@is_logged_in
+          #login
+            %a{ :style => "font-size: 400%;", :class => "btn btn-large btn-primary", :href => "/login" } Login to Facebook
+
+        = yield
