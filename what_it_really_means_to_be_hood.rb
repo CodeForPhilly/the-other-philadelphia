@@ -4,6 +4,7 @@ require "sinatra/base"
 require "yaml"
 require "koala"
 require "openssl"
+require "haml"
 
 require "models/person"
 require "models/statistics_assigner"
@@ -30,6 +31,12 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     @poverty_rate  = stats["poverty"]["rate"]
     @dropout_rate = 1 - @graduation_rate
     @is_logged_in = session["access_token"]
+    @mappings = {
+      "violent_crime" => "important",
+      "unemployment" => "warning",
+      "graduation" => "success",
+      "poverty" => "info"
+    }
 
     if session["access_token"]
       friends_loader = FriendsLoader.new session["access_token"], stats
