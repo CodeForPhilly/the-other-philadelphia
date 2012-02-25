@@ -15,17 +15,18 @@ h1 {
 
 
 #banner {
-  font-family: 'Crete Round', serif;
   border-bottom: 1px solid #999;
   padding-bottom: 2em;
 }
 
 .prefix {
+  font-family: 'Crete Round', serif;
   font-size: 24px;
   font-style: italic;
  }
 
  .maintitle {
+   font-family: 'Crete Round', serif;
    margin-top: 12px;
    color: #FF0;
    font-size: 300%;
