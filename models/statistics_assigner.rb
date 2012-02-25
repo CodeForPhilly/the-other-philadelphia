@@ -1,5 +1,4 @@
-
-class StatisticsAssigner 
+class StatisticsAssigner
   def initialize(people, stats)
     @people = people
     @stats = stats

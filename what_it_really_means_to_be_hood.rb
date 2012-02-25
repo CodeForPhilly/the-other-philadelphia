@@ -5,6 +5,7 @@ require "yaml"
 require "koala"
 require "openssl"
 
+require "models/person"
 require "models/statistics_assigner"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
@@ -22,11 +23,11 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
   end
 
   get "/" do
-    @stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
-    @violent_crime_rate = @stats["violent_crime"]["rate"]
-    @unemployment_rate = @stats["unemployment"]["rate"]
-    @graduation_rate  = @stats["graduation"]["rate"]
-    @poverty_rate  = @stats["poverty"]["rate"]
+    stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
+    @violent_crime_rate = stats["violent_crime"]["rate"]
+    @unemployment_rate = stats["unemployment"]["rate"]
+    @graduation_rate  = stats["graduation"]["rate"]
+    @poverty_rate  = stats["poverty"]["rate"]
     @dropout_rate = 1 - @graduation_rate
     @is_logged_in = session["access_token"]
 
@@ -34,23 +35,23 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
       graph = Koala::Facebook::API.new(session["access_token"])
       friends = graph.get_connections("me", "friends")[0..MAX_COUNT]
 
-      @photos = graph.batch do |batch|
+      photos = graph.batch do |batch|
         friends.each do |friend|
            batch.get_picture(friend["id"], :type => "large")
         end
       end
 
       # Create a hash of friend's names and profile pictures
-      friendsPairs = friends.collect{|friend| friend["name"]}.zip(@photos)
+      friendsPairs = friends.collect{|friend| friend["name"]}.zip(photos)
       friendsHash = Hash[friendsPairs]
 
       # Assignments
-      assigner = StatisticsAssigner.new friendsPairs, @stats
+      assigner = StatisticsAssigner.new friendsPairs, stats
       assignments = assigner.assign
 
-      p assignments
-
-      "Size: #{@photos.length}"
+      @friends = assignments.collect do |assignment|
+        Person.new(assignment[:person].first, assignment[:person].last, assignment[:statistics])
+      end
     end
 
     haml :index, :layout => :layout
