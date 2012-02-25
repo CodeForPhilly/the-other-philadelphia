@@ -1,0 +1,13 @@
+!!! 5
+%head
+  %title Title here
+  %meta{ :charset => 'utf-8' }
+
+  %link{ :rel => 'stylesheet', :href => 'styles/bootstrap.min.css', :type => 'text/css' }
+  %link{ :rel => 'stylesheet', :href => 'styles/bootstrap-responsive.min.css', :type => 'text/css' }
+
+%body
+  .container
+    .row
+      %h1 Hi There
+    = yield
