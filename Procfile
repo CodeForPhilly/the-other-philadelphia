@@ -1,1 +1,1 @@
-web: bundle exec shotgun config.ru
+web: bundle exec thin start -p $PORT

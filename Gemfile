@@ -6,6 +6,7 @@ gem "thin"
 gem "haml"
 
 group :development do
+  gem "heroku"
   gem "foreman"
   gem "shotgun"
   gem "rack-test"
