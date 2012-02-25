@@ -23,20 +23,8 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     @unemployment_rate = @stats["unemployment"]["rate"]
     @graduation_rate  = @stats["graduation"]["rate"]
     @poverty_rate  = @stats["poverty"]["rate"]
-    #"poverty_rate = #{@poverty_rate}"
 
-    #if session["access_token"]
-    #  'You are logged in! <a href="/logout">Logout</a>'
-    #  # do some stuff with facebook here
-    #  # for example:
-    #  # @graph = Koala::Facebook::GraphAPI.new(session["access_token"])
-    #  # publish to your wall (if you have the permissions)
-    #  # @graph.put_wall_post("I'm posting from my new cool app!")
-    #  # or publish to someone else (if you have the permissions too ;) )
-    #  # @graph.put_wall_post("Checkout my new cool app!", {}, "someoneelse's id")
-    #else
-    #  '<a href="/login">Login</a>'
-    #end
+    @dropout_rate = 1 - @graduation_rate
 
     @is_logged_in = session["access_token"]
     haml :index, :layout => :layout

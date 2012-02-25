@@ -1,0 +1,74 @@
+body {
+  background-color: #333;
+  color: #FFF;
+  margin-top: 1.6em;
+  font-family: Arial, sans-serif;
+  font-size: 80%;
+}
+h1 {
+  color: #FFF;
+}
+
+.row {
+  margin-bottom: 2em;
+}
+
+
+#banner {
+  font-family: 'Crete Round', serif;
+  border-bottom: 1px solid #999;
+  padding-bottom: 2em;
+}
+
+.prefix {
+  font-size: 24px;
+  font-style: italic;
+ }
+
+ .maintitle {
+   margin-top: 12px;
+   color: #FF0;
+   font-size: 300%;
+ }
+
+#rates {
+  border-bottom: 1px solid #999;
+  padding-bottom: 1em;
+}
+
+#rates h3 {
+  color: #FFF;
+  font-family: 'Crete Round';
+  font-size: 500%;
+  margin-bottom: 0.4em;
+}
+
+#rates h3:after {
+  color: #666;
+  content: '%'
+}
+
+#action {
+  border-top: 1px solid #999;
+}
+
+#action h2 {
+  font-size: 180%;
+  font-weight: normal;
+  font-family: 'Crete Round';
+  font-style: italic;
+  color: #fff;
+}
+
+#organizations h3 {
+  text-align: center;
+}
+#organizations a {
+  color: #FF0;
+}
+
+#footer {
+  text-align: center;
+  border-top: 1px solid #999;
+  padding-top: 2em;
+}

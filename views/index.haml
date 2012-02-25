@@ -1,3 +1,38 @@
-.row
+#rates.row
+  .span3
+    %h3= "%2.1f" % (@unemployment_rate * 100)
+    %span.label.label-warning Unemployed
+  .span3
+    %h3= "%2.1f" % (@violent_crime_rate * 100)
+    %span.label.label-important Violent Crime
+  .span3
+    %h3= "%2.1f" % (@dropout_rate * 100)
+    %span.label.label-success Dropout
+  .span3
+    %h3= "%2.1f" % (@poverty_rate * 100)
+    %span.label.label-info Poverty
+
+#action.row
   .span12
-    %h2 Hi from index
+    %h2 Want to change this?
+    %p Read about some of the great work these organizations do and contact them to get involved in changing the Philadelphia around you.
+
+#organizations.row
+  .span3
+    %h3
+      %a{ :href => 'http://www.uwsepa.org' } United Way of Southeastern Pennsylvania
+  .span3
+    %h3
+      %a{ :href => 'http://volunteer.phila.gov' } SERVE Philadelphia
+  .span3
+    %h3
+      %a{ :href => 'http://www.phillygradcoach.org' } Graduation Coach
+  .span3
+    %h3
+      %a{ :href => 'http://www.bbssepa.org' } Big Brothers Big Sisters of Southeastern Pennsylvania
+
+
+#footer.row
+  .span6.offset3
+    %p Created by Erica Atwood, Nick Canzoneri, Hector Castro, Michelle Lee, Jamie Ly
+    %p at Code Across America: Philadelphia's Civic Hackathon

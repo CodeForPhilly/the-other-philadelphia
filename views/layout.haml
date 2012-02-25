@@ -1,17 +1,22 @@
 !!! 5
 %head
-  %title Title here
+  %title The Other Philadelphia
   %meta{ :charset => 'utf-8' }
 
   %link{ :rel => 'stylesheet', :href => 'styles/bootstrap.min.css', :type => 'text/css' }
   %link{ :rel => 'stylesheet', :href => 'styles/bootstrap-responsive.min.css', :type => 'text/css' }
+  %link{ :rel => 'stylesheet', :href => 'styles/general.css', :type => 'text/css' }
+
+  %link{'rel' => 'stylesheet', 'href' => 'http://fonts.googleapis.com/css?family=Crete+Round:400,400italic', 'type' => 'text/css' }
 
 %body
   .container
-    .row
-      .span12
-        %h1 Hi There
-
+    #banner.row
+      .span6
+        .prefix The Other
+        .maintitle Philadelphia
+      .span6
+        #about The Other Philadelphia takes the stats of inner-city life, mashes them up with your Facebook friends, and shows what life might be like if you lived somewhere else.
     .row
       .span12
         - if @is_logged_in
