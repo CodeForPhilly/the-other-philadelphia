@@ -20,7 +20,7 @@
     .row
       .span12
         - if @is_logged_in
-          %a{ :href => '/logout' } Logout
+          %a.btn{ :href => '/logout' } Logout
         - else
-          %a{ :href => '/login' } Login
+          %a.btn{ :href => '/login' } Login
     = yield
