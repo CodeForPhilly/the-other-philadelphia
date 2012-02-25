@@ -1,24 +1,11 @@
-#rates.row
-  .span3
-    %h3= "%2.1f" % (@unemployment_rate * 100)
-    %span.label.label-warning Unemployed
-  .span3
-    %h3= "%2.1f" % (@violent_crime_rate * 100)
-    %span.label.label-important Violent Crime
-  .span3
-    %h3= "%2.1f" % (@dropout_rate * 100)
-    %span.label.label-success Dropout
-  .span3
-    %h3= "%2.1f" % (@poverty_rate * 100)
-    %span.label.label-info Poverty
-
-#friends
-  - @friends.each do |friend|
-    .friend
-      %h3= friend.name
-      .picture{ :style => "background-image: url('#{friend.picture}');"}
-        - friend.tags.each do |tag|
-          %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
+-if @is_logged_in
+  #friends
+    - @friends.each do |friend|
+      .friend
+        %h3= friend.name
+        .picture{ :style => "background-image: url('#{friend.picture}');"}
+          - friend.tags.each do |tag|
+            %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
 
 #action.row
   .span12
