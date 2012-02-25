@@ -7,6 +7,7 @@ require "openssl"
 
 require "models/person"
 require "models/statistics_assigner"
+require "models/friends_loader"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
@@ -19,7 +20,6 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     APP_ID    = ENV["APP_ID"]
     APP_CODE  = ENV["APP_CODE"]
     SITE_URL  = ENV["SITE_URL"]
-    MAX_COUNT = 40
   end
 
   get "/" do
@@ -32,26 +32,8 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     @is_logged_in = session["access_token"]
 
     if session["access_token"]
-      graph = Koala::Facebook::API.new(session["access_token"])
-      friends = graph.get_connections("me", "friends")[0..MAX_COUNT]
-
-      photos = graph.batch do |batch|
-        friends.each do |friend|
-           batch.get_picture(friend["id"], :type => "large")
-        end
-      end
-
-      # Create a hash of friend's names and profile pictures
-      friendsPairs = friends.collect{|friend| friend["name"]}.zip(photos)
-      friendsHash = Hash[friendsPairs]
-
-      # Assignments
-      assigner = StatisticsAssigner.new friendsPairs, stats
-      assignments = assigner.assign
-
-      @friends = assignments.collect do |assignment|
-        Person.new(assignment[:person].first, assignment[:person].last, assignment[:statistics])
-      end
+      friends_loader = FriendsLoader.new session["access_token"], stats
+      @friends = friends_loader.get_friends
     end
 
     haml :index, :layout => :layout
