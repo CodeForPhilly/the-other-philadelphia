@@ -63,9 +63,17 @@ h1 {
 
 #organizations h3 {
   text-align: center;
+  font-size: 70%;
 }
+
 #organizations a {
   color: #FF0;
+}
+
+#organizations a:hover{
+  background-color:#FF0;
+  color:#000;
+  text-decoration:none;
 }
 
 #organizations-logos a {
