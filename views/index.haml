@@ -12,6 +12,15 @@
     %h3= "%2.1f" % (@poverty_rate * 100)
     %span.label.label-info Poverty
 
+#friends
+  - @friends.each do |friend|
+    .friend
+      %h3= friend.name
+      .picture
+        %img{ :src => friend.picture }
+      - friend.tags.each do |tag|
+        %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
+
 #action.row
   .span12
     %h2 Want to change this?
