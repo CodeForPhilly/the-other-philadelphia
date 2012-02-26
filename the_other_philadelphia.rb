@@ -24,7 +24,7 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
   end
 
   get "/" do
-    @stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
+    @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"]
     @is_logged_in = session["access_token"]
     @mappings = {
       "violent_crime" => "important",
