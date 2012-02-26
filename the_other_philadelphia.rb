@@ -6,9 +6,9 @@ require "koala"
 require "openssl"
 require "haml"
 
-require "models/person"
-require "models/statistics_assigner"
-require "models/friends_loader"
+require "lib/person"
+require "lib/statistics_assigner"
+require "lib/friends_loader"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
@@ -56,7 +56,6 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     redirect "/"
   end
 
-  #method to handle the redirect from facebook back to you
   get "/callback" do
     session["access_token"] = session["oauth"].get_access_token(params[:code])
     redirect "/"
