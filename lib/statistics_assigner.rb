@@ -7,21 +7,21 @@ class StatisticsAssigner
   def assign
     @assignments = {}
     # @people is array
-    peopleAnnotated = @people.collect do |person|
+    people_annotated = @people.collect do |person|
       {
         :person => person,
         :statistics => []
       }
     end
-    count = peopleAnnotated.length
+    count = people_annotated.length
     @stats.each do |key, value|
-      sample = peopleAnnotated.sample((value["rate"] * count).floor)
+      sample = people_annotated.sample((value["rate"] * count).floor)
       sample.each do | person |
         person[:statistics] << key
       end
     end
 
-    peopleAnnotated
+    people_annotated
   end
 end
 
