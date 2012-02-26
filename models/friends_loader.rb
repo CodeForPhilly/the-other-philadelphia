@@ -1,5 +1,5 @@
 class FriendsLoader
-  def initialize(access_token, stats, max_count = 53)
+  def initialize(access_token, stats, max_count = 47)
     @access_token = access_token
     @max_count = max_count
     @stats = stats
