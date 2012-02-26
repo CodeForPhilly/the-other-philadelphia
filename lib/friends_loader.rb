@@ -7,7 +7,7 @@ class FriendsLoader
 
   def get_friends
       graph = Koala::Facebook::API.new(@access_token)
-      friends = graph.get_connections("me", "friends")[0..@max_count]
+      friends = graph.get_connections("me", "friends").sample(@max_count)
 
       photos = graph.batch do |batch|
         friends.each do |friend|
