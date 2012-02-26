@@ -38,7 +38,7 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
       @friends = friends_loader.get_friends
     else
       people = 10.times.collect { Hash.new }
-      assigner = StatisticsAssigner.new people, stats
+      assigner = StatisticsAssigner.new people, @stats
       @friends = assigner.assign
     end
 
