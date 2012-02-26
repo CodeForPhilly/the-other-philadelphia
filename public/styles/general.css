@@ -116,3 +116,7 @@ a.source-link {
   border-bottom: 1px dotted #999;
   color: #999;
 }
+
+#logout-button {
+  float: right;
+}
