@@ -8,8 +8,4 @@ class Person
     @picture = picture
     @tags = tags
   end
-
-  def inspect
-    { :name => @name, :picture => @picture, :tags => @tags }
-  end
 end
