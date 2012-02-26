@@ -1,16 +1,16 @@
-require "./what_it_really_means_to_be_hood"
+require "./the_other_philadelphia"
 require "rack/test"
 
 ENV["RACK_ENV"] = "test"
 
-module WhatItReallyMeansToBeHoodAppTest
+module TheOtherPhiladelphiaAppTest
   include Rack::Test::Methods
 
   def app
-    WhatItReallyMeansToBeHoodApp
+    TheOtherPhiladelphiaApp
   end
 end
 
 RSpec.configure do |c|
-  c.include WhatItReallyMeansToBeHoodAppTest
+  c.include TheOtherPhiladelphiaAppTest
 end

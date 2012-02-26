@@ -12,7 +12,7 @@ require "models/friends_loader"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-class WhatItReallyMeansToBeHoodApp < Sinatra::Base
+class TheOtherPhiladelphiaApp < Sinatra::Base
   set :show_exceptions, false
   set :sessions, true
   set :session_secret, "development" if ENV['RACK_ENV'] == "development"

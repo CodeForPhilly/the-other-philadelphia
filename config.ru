@@ -2,8 +2,8 @@ require "bundler"
 
 Bundler.require
 
-require "./what_it_really_means_to_be_hood"
+require "./the_other_philadelphia"
 
 map "/" do
-  run WhatItReallyMeansToBeHoodApp
+  run TheOtherPhiladelphiaApp
 end
