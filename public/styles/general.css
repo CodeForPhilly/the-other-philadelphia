@@ -109,3 +109,10 @@ h1 {
   margin: 20px;
   text-align: center;
 }
+
+a.source-link {
+  font-style: italic;
+  text-decoration: none;
+  border-bottom: 1px dotted #999;
+  color: #999;
+}

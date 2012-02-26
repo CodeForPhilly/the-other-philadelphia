@@ -1,13 +1,17 @@
 statistics:
   unemployed:
     rate: 0.10
-    source: http://www.countyhealthrankings.org/pennsylvania/philadelphia
+    source: "http://www.countyhealthrankings.org/pennsylvania/philadelphia"
+    source_text: "County Health Rankings"
   violent_crime:
     rate: 0.0146
-    source: http://www.countyhealthrankings.org/pennsylvania/philadelphia
+    source: "http://www.countyhealthrankings.org/pennsylvania/philadelphia"
+    source_text: "County Health Rankings"
   poverty:
     rate: 0.25
-    source: http://www.pewtrusts.org/our_work_report_detail.aspx?id=329110
+    source: "http://www.pewtrusts.org/our_work_report_detail.aspx?id=329110"
+    source_text: "The Pew Charitable Trusts"
   dropout:
     rate: 0.42
-    source: http://www.countyhealthrankings.org/pennsylvania/philadelphia
+    source: "http://www.countyhealthrankings.org/pennsylvania/philadelphia"
+    source_text: "County Health Rankings"

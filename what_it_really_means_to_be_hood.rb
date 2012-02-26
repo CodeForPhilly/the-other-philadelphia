@@ -24,11 +24,7 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
   end
 
   get "/" do
-    stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
-    @violent_crime_rate = stats["violent_crime"]["rate"]
-    @unemployment_rate = stats["unemployed"]["rate"]
-    @dropout_rate  = stats["dropout"]["rate"]
-    @poverty_rate  = stats["poverty"]["rate"]
+    @stats = YAML.load_file("philadelphia_statistics.yml")["statistics"]
     @is_logged_in = session["access_token"]
     @mappings = {
       "violent_crime" => "important",
@@ -38,7 +34,7 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
     }
 
     if session["access_token"]
-      friends_loader = FriendsLoader.new session["access_token"], stats
+      friends_loader = FriendsLoader.new session["access_token"], @stats
       @friends = friends_loader.get_friends
     else
       people = 10.times.collect { Hash.new }

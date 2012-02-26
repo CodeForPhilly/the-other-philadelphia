@@ -1,16 +1,24 @@
 #rates.row
   .span3
-    %h3= "%2.1f" % (@unemployment_rate * 100)
+    %h3= "%2.1f" % (@stats["unemployed"]["rate"] * 100)
     %span.label.label-warning Unemployed
+    %br
+    %a.source-link{ :href => @stats["unemployed"]["source"] }= @stats["unemployed"]["source_text"]
   .span3
-    %h3= "%2.1f" % (@violent_crime_rate * 100)
+    %h3= "%2.1f" % (@stats["violent_crime"]["rate"] * 100)
     %span.label.label-important Violent Crime Victim
+    %br
+    %a.source-link{ :href => @stats["violent_crime"]["source"] }= @stats["violent_crime"]["source_text"]
   .span3
-    %h3= "%2.1f" % (@dropout_rate * 100)
+    %h3= "%2.1f" % (@stats["dropout"]["rate"] * 100)
     %span.label.label-success High School Dropout
+    %br
+    %a.source-link{ :href => @stats["dropout"]["source"] }= @stats["dropout"]["source_text"]
   .span3
-    %h3= "%2.1f" % (@poverty_rate * 100)
+    %h3= "%2.1f" % (@stats["poverty"]["rate"] * 100)
     %span.label.label-info Below US Census Poverty Threshold
+    %br
+    %a.source-link{ :href => @stats["poverty"]["source"] }= @stats["poverty"]["source_text"]
 
 -if @is_logged_in
   %ul.thumbnails#friends
