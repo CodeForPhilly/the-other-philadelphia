@@ -1,7 +1,6 @@
-#friends
+%ul.thumbnails#friends
   - @friends.each do |friend|
-    .friend
-      .picture
-        - friend[:statistics].each do |tag|
+    %li.thumbnail.friend.span2
+      .picture{ :style => "background-color: #666" }
+        - friend.tags.each do |tag|
           %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
-

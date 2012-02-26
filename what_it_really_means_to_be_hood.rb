@@ -46,7 +46,7 @@ class WhatItReallyMeansToBeHoodApp < Sinatra::Base
       @friends = assigner.assign
     end
 
-    haml (@is_logged_in ? :index : :splash), :layout => :layout
+    haml :index, :layout => :layout
   end
 
   get "/login" do
