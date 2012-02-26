@@ -10,6 +10,7 @@ group :development do
   gem "foreman"
   gem "shotgun"
   gem "rack-test"
+  gem "webmock"
   gem "rspec"
   gem "guard-rspec"
 end

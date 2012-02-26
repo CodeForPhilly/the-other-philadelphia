@@ -57,7 +57,8 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
   end
 
   get "/callback" do
-    session["access_token"] = session["oauth"].get_access_token(params[:code])
+    session["access_token"] = session["oauth"].get_access_token(params[:code]) if params[:code]
+
     redirect "/"
   end
 end
