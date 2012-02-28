@@ -27,7 +27,7 @@
         %h3= friend.name
         .picture{ :style => "background-image: url('#{friend.picture}');"}
           - friend.tags.each do |tag|
-            %span{ :class => "label label-#{@mappings[tag]}" }= tag.capitalize
+            %span{ :class => "label label-#{@mappings[tag]}" }= tag.sub("_", " ").capitalize
 
 #action.row
   .span12

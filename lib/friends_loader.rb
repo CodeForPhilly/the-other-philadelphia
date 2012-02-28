@@ -7,7 +7,7 @@ class FriendsLoader
 
   def get_friends
       graph = Koala::Facebook::API.new(@access_token)
-      friends = graph.get_connections("me", "friends").sample(@max_count)
+      friends = graph.get_connections("me", "friends")
 
       # Now that we got the friends, sample!
       assigner = StatisticsAssigner.new friends, @stats
@@ -20,7 +20,7 @@ class FriendsLoader
 
       # Get all photos in batches of 49
       afflicted_friends_photos = []
-      afflicted_friends.each_slice(49) do |friends|
+      afflicted_friends.each_slice(@max_count) do |friends|
         # Execute a batch API query
         photos = graph.batch do |batch|
           friends.each do |friend|
