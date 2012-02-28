@@ -14,9 +14,7 @@ class FriendsLoader
       assignments = assigner.assign
 
       # Now reduce the assignments to only those afflicted
-      afflicted_friends = assignments.select do |asmt|
-        !asmt[:statistics].empty?
-      end
+      afflicted_friends = assignments.reject { |asmt| asmt[:statistics].empty? }
 
       # Get all photos in batches of 49
       afflicted_friends_photos = []
