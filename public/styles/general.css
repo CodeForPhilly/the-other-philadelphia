@@ -30,6 +30,13 @@ h1 {
    color: #FF0;
    font-size: 300%;
  }
+#about.not-logged-in {
+ font-family: 'Crete Round', serif;
+ margin-top: 12px;
+ color: #FF0;
+ font-size: 300%;
+ line-height: 150%;
+}
 
 #rates {
   border-bottom: 1px solid #999;
@@ -97,6 +104,9 @@ h1 {
     background-repeat: no-repeat;
     padding: 0.4em;
   }
+    .friend .picture.empty {
+      background-color: #666;
+    }
   .friend h3 {
     font-family: 'Crete Round';
     text-align: center;
