@@ -47,11 +47,6 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     if @is_logged_in
       friends_loader = FriendsLoader.new(session["access_token"], StatisticsAssigner.new(@stats))
       @friends = friends_loader.get_friends
-    else
-      assigner = StatisticsAssigner.new(@stats)
-      assigner.people = 100.times.collect { Hash.new }
-      @friends = assigner.assign
-      p @friends
     end
 
     haml @is_logged_in ? :index : :splash, :layout => :layout
