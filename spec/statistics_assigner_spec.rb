@@ -4,7 +4,7 @@ describe StatisticsAssigner do
   before(:each) { @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"] }
 
   let (:assigner) do
-    friends_pairs = 10.times.collect { |t| [ "John Due #{t}", "https://fbcdn.net/photo#{t}.jpg" ] }
+    friends_pairs = 10.times.collect { |t| [ "John Doe #{t}", "https://fbcdn.net/photo#{t}.jpg" ] }
     StatisticsAssigner.new(friends_pairs, @stats)
   end
 

@@ -17,9 +17,7 @@ class FriendsLoader
       assignments = assigner.assign
 
       # Now reduce the assignments to only those afflicted
-      afflicted_friends = assignments.select do |asmt|
-        !asmt[:statistics].empty?
-      end
+      afflicted_friends = assignments.reject { |asmt| asmt[:statistics].empty? }
 
       # Now limit and randomize
       afflicted_friends = afflicted_friends.take(@max_count).shuffle
