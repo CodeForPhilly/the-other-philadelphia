@@ -1,6 +1,6 @@
 !!! 5
 %head
-  %title The Other Philadelphia
+  %title The Other #{@city}
   %meta{ :charset => 'utf-8' }
 
   %link{ :rel => 'stylesheet', :href => 'styles/bootstrap.min.css', :type => 'text/css' }
@@ -25,16 +25,12 @@
     #banner.row
       .span6
         .prefix The Other
-        .maintitle Philadelphia
+        .maintitle= @city
       .span6
         #about.logged-in= @is_logged_in ? @about : ""
         - if @is_logged_in
           %a#logout-button.btn.btn-mini.btn-primary{ :href => "/logout" } Logout
     .row
       .span12
-        - if !@is_logged_in
-          #about.not-logged-in= @about
-          #login
-            %a.btn.btn-large.btn-primary{ :style => "font-size: 400%;", :href => "/login" } Login to Facebook
 
         = yield

@@ -35,34 +35,13 @@
     %p Read about some of the great work these organizations do and contact them to get involved in changing the Philadelphia around you.
 
 #organizations-logos.row
-  .span3
-    %a{ :href => 'http://www.uwsepa.org' }
-      %img{ :src => '/logos/unitedway.png' }
-  .span3
-    %a{ :href => 'http://volunteer.phila.gov' }
-      %img{ :src => '/logos/servephilly.png' }
-  .span3
-    %a{ :href => 'http://www.phillygradcoach.org' }
-      %img{ :src => '/logos/gradcoaches.png' }
-  .span3
-    %a{ :href => 'http://www.bbssepa.org' }
-      %img{ :src => '/logos/big.png' }
-
-#organizations.row
-  .span3
-    %h3
-      %a{ :href => 'http://www.uwsepa.org' } United Way of Southeastern Pennsylvania
-  .span3
-    %h3
-      %a{ :href => 'http://volunteer.phila.gov' } SERVE Philadelphia
-  .span3
-    %h3
-      %a{ :href => 'http://www.phillygradcoach.org' } Graduation Coach
-  .span3
-    %h3
-      %a{ :href => 'http://www.bbssepa.org' } Big Brothers Big Sisters of Southeastern Pennsylvania
+  - @organizations.each do |organization|
+    .span3
+      %a{ :href => organization["website"], :title => organization["name"] }
+        %img{ :alt => organization["name"], :src => organization["logo"] }
 
 #footer.row
   .span6.offset3
     %p Created by Erica Atwood, Nick Canzoneri, Hector Castro, Michelle Lee, Jamie Ly
     %p at Code Across America: Philadelphia's Civic Hackathon
+

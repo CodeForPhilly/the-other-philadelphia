@@ -15,3 +15,17 @@ statistics:
     rate: 0.42
     source: "http://www.countyhealthrankings.org/pennsylvania/philadelphia"
     source_text: "County Health Rankings"
+organizations:
+  - name: United Way of Southeastern Pennsylvania
+    website: http://www.uwsepa.org
+    logo: /logos/unitedway.png
+  - name: SERVE Philadelphia
+    website: http://volunteer.phila.gov
+    logo: /logos/servephilly.png
+  - name: Graduation Coach
+    website: http://www.phillygradcoach.org
+    logo: /logos/gradcoaches.png
+  - name: Big Brothers Big Sisters of Southeastern Pennsylvania
+    website: http://www.bbssepa.org
+    logo: /logos/big.png
+    
