@@ -21,16 +21,21 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     APP_ID    = ENV["APP_ID"] || "app_id"
     APP_CODE  = ENV["APP_CODE"] || "app_code"
     SITE_URL  = ENV["SITE_URL"] || "site_url"
-
   end
 
   get "/" do
-    # About text that gets displayed as information for the user.
-    @about = "The Other Philadelphia takes the stats of inner-city life, 
-      mashes them up with your Facebook friends, and shows what life might 
-      be like if you lived in the city."
+    # How should @city be set later?
+    @city = "Philadelphia"
 
-    @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"]
+    # About text that gets displayed as information for the user.
+    @about = "<span class=\"name\">The Other #{@city}</span> shows you
+      what happens when #{@city}'s statistics are applied to your Facebook
+      friends."
+
+    yaml_contents = YAML.load_file("data/#{@city.downcase.gsub(/[^\da-z]/, "_")}.yml")
+    @stats = yaml_contents["statistics"]
+    @organizations = yaml_contents["organizations"]
+
     @is_logged_in = session["access_token"]
     @mappings = {
       "violent_crime" => "important",
