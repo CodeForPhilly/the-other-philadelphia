@@ -21,9 +21,15 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     APP_ID    = ENV["APP_ID"] || "app_id"
     APP_CODE  = ENV["APP_CODE"] || "app_code"
     SITE_URL  = ENV["SITE_URL"] || "site_url"
+
   end
 
   get "/" do
+    # About text that gets displayed as information for the user.
+    @about = "The Other Philadelphia takes the stats of inner-city life, 
+      mashes them up with your Facebook friends, and shows what life might 
+      be like if you lived in the city."
+
     @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"]
     @is_logged_in = session["access_token"]
     @mappings = {
@@ -33,16 +39,17 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
       "poverty" => "info"
     }
 
-    if session["access_token"]
+    if @is_logged_in
       friends_loader = FriendsLoader.new session["access_token"], @stats
       @friends = friends_loader.get_friends
     else
-      people = 10.times.collect { Hash.new }
+      people = 100.times.collect { Hash.new }
       assigner = StatisticsAssigner.new people, @stats
       @friends = assigner.assign
+      p @friends
     end
 
-    haml :index, :layout => :layout
+    haml @is_logged_in ? :index : :splash, :layout => :layout
   end
 
   get "/login" do

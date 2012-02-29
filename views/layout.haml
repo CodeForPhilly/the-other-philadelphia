@@ -28,12 +28,13 @@
         .prefix The Other
         .maintitle Philadelphia
       .span6
-        #about The Other Philadelphia takes the stats of inner-city life, mashes them up with your Facebook friends, and shows what life might be like if you lived somewhere else.
+        #about.logged-in= @is_logged_in ? @about : ""
         - if @is_logged_in
           %a#logout-button.btn.btn-mini.btn-primary{ :href => "/logout" } Logout
     .row
       .span12
         - if !@is_logged_in
+          #about.not-logged-in= @about
           #login
             %a.btn.btn-large.btn-primary{ :style => "font-size: 400%;", :href => "/login" } Login to Facebook
 
