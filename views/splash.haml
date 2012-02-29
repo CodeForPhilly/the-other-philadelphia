@@ -1,4 +1,4 @@
 - if !@is_logged_in
-  #about.not-logged-in= @about
+  #about.not-logged-in= partial(:about)
   #login
     %a.btn.btn-large.btn-primary{ :style => "font-size: 400%;", :href => "/login" } Login to Facebook
