@@ -23,14 +23,15 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     SITE_URL  = ENV["SITE_URL"] || "site_url"
   end
 
+  helpers do
+    def partial(page, options={ })
+      haml page, options.merge!(:layout => false)
+    end
+  end
+
   get "/" do
     # How should @city be set later?
     @city = "Philadelphia"
-
-    # About text that gets displayed as information for the user.
-    @about = "<span class=\"name\">The Other #{@city}</span> shows you
-      what happens when #{@city}'s statistics are applied to your Facebook
-      friends."
 
     yaml_contents = YAML.load_file("data/#{@city.downcase.gsub(/[^\da-z]/, "_")}.yml")
     @stats = yaml_contents["statistics"]

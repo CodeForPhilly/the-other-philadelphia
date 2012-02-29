@@ -27,7 +27,7 @@
         .prefix The Other
         .maintitle= @city
       .span6
-        #about.logged-in= @is_logged_in ? @about : ""
+        #about.logged-in= @is_logged_in ? partial(:about) : ""
         - if @is_logged_in
           %a#logout-button.btn.btn-mini.btn-primary{ :href => "/logout" } Logout
     .row

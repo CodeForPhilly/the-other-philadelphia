@@ -36,6 +36,7 @@ h1 {
  color: #FF0;
  font-size: 300%;
  line-height: 150%;
+ text-align: center;
 }
 
   #about.not-logged-in .name {
