@@ -38,6 +38,10 @@ h1 {
  line-height: 150%;
 }
 
+  #about.not-logged-in .name {
+    color: white;
+  }
+
 #rates {
   border-bottom: 1px solid #999;
   padding-bottom: 1em;
