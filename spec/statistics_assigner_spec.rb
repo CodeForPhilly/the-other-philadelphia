@@ -3,9 +3,11 @@ require "spec_helper"
 describe StatisticsAssigner do
   before(:each) { @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"] }
 
-  let (:assigner) do
-    friends_pairs = 10.times.collect { |t| [ "John Doe #{t}", "https://fbcdn.net/photo#{t}.jpg" ] }
-    StatisticsAssigner.new(friends_pairs, @stats)
+  let(:assigner) do
+    assigner = StatisticsAssigner.new(@stats)
+    assigner.people = facebook_friends
+
+    assigner
   end
 
   it "should assign statistics" do

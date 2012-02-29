@@ -1,11 +1,10 @@
 class FriendsLoader
-
   BATCH_API_LIMIT = 49
 
-  def initialize(access_token, stats, max_count = 102)
+  def initialize(access_token, assigner, max_count = 102)
     @access_token = access_token
-    @max_count = max_count
-    @stats = stats
+    @assigner     = assigner
+    @max_count    = max_count
   end
 
   def get_friends
@@ -13,8 +12,8 @@ class FriendsLoader
       friends = graph.get_connections("me", "friends")
 
       # Now that we got the friends, sample!
-      assigner = StatisticsAssigner.new friends, @stats
-      assignments = assigner.assign
+      @assigner.people  = friends
+      assignments       = @assigner.assign
 
       # Now reduce the assignments to only those afflicted
       afflicted_friends = assignments.reject { |asmt| asmt[:statistics].empty? }

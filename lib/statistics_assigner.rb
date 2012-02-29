@@ -1,6 +1,7 @@
 class StatisticsAssigner
-  def initialize(people, stats)
-    @people = people
+  attr_writer :people
+  
+  def initialize(stats)
     @stats = stats
   end
 

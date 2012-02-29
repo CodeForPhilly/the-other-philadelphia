@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Person do
-  let (:person) { Person.new("John Doe", "https://fbcdn.net/photo.jpg", [ "violent_crime", "poverty" ]) }
+  let(:person) { Person.new("John Doe", "https://fbcdn.net/photo.jpg", [ "violent_crime", "poverty" ]) }
 
   it "should have a name" do
     person.name.should == "John Doe"

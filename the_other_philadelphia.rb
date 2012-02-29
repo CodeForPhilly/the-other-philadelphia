@@ -34,11 +34,11 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     }
 
     if session["access_token"]
-      friends_loader = FriendsLoader.new session["access_token"], @stats
+      friends_loader = FriendsLoader.new(session["access_token"], StatisticsAssigner.new(@stats))
       @friends = friends_loader.get_friends
     else
-      people = 10.times.collect { Hash.new }
-      assigner = StatisticsAssigner.new people, @stats
+      assigner = StatisticsAssigner.new(@stats)
+      assigner.people = 10.times.collect { Hash.new }
       @friends = assigner.assign
     end
 

@@ -2,23 +2,20 @@ require "spec_helper"
 
 describe FriendsLoader do
   before(:each) do
-    facebook_request_stubs!
-
-    @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"]
+    facebook_oauth_stubs!
+    facebook_friends_stubs!
   end
 
-  let (:loader) { FriendsLoader.new("token", @stats) }
-  let (:person) { Person.new("John Doe", "https://fbcdn.net/photo.jpg", [ "violent_crime", "poverty" ]) }
+  let(:friends) do
+    assigner = mock(StatisticsAssigner, :assign => statistic_assigner_friends, :people= => [ ])
+    FriendsLoader.new("token", assigner).get_friends
+  end
 
   it "should return a list of friends" do
-    loader.get_friends.length == 1
+    friends.length.should == 10
   end
 
-  it "should include John Doe" do
-    loaded_friend = loader.get_friends.first
-
-    loaded_friend.name.should == person.name
-    loaded_friend.picture.should == person.picture
+  it "should have at least one tag" do
+    friends.each { |friend| friend.tags.length.should >= 1 }
   end
 end
-

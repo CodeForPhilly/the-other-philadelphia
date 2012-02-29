@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "Facebook Authentication" do
-  before(:each) { facebook_request_stubs! }
+  before(:each) { facebook_oauth_stubs! }
 
   describe "GET /login" do
     it "should redirect to Facebook authorization URL" do
