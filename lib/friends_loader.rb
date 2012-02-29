@@ -1,5 +1,8 @@
 class FriendsLoader
-  def initialize(access_token, stats, max_count = 47)
+
+  BATCH_API_LIMIT = 49
+
+  def initialize(access_token, stats, max_count = 102)
     @access_token = access_token
     @max_count = max_count
     @stats = stats
@@ -14,13 +17,14 @@ class FriendsLoader
       assignments = assigner.assign
 
       # Now reduce the assignments to only those afflicted
-      afflicted_friends = assignments.select do |asmt|
-        !asmt[:statistics].empty?
-      end
+      afflicted_friends = assignments.reject { |asmt| asmt[:statistics].empty? }
 
-      # Get all photos in batches of 49
+      # Now limit and randomize
+      afflicted_friends = afflicted_friends.take(@max_count).shuffle
+
+      # Get all photos in batches of BATCH_API_LIMIT
       afflicted_friends_photos = []
-      afflicted_friends.each_slice(@max_count) do |friends|
+      afflicted_friends.each_slice(BATCH_API_LIMIT) do |friends|
         # Execute a batch API query
         photos = graph.batch do |batch|
           friends.each do |friend|
