@@ -35,7 +35,7 @@
     %p Read about some of the great work these organizations do and contact them to get involved in changing the Philadelphia around you.
 
 #organizations-logos.row
-  - @organizations.each do |organization|
+  - @organizations.shuffle.take(4).each do |organization|
     .span3
       %a{ :href => organization["website"], :title => organization["name"] }
         %img{ :alt => organization["name"], :src => organization["logo"] }
