@@ -1,20 +1,16 @@
 require "spec_helper"
 
 describe StatisticsAssigner do
-  before(:each) { @stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"] }
-
-  let(:assigner) do
-    assigner = StatisticsAssigner.new(@stats)
-    assigner.people = facebook_friends
-
-    assigner
-  end
+  let(:assigner) { StatisticsAssigner.new(facebook_friends, rates) }
 
   it "should assign statistics" do
-    assignments = assigner.assign.collect { |person| person[:statistics] }.flatten
+    tags = assigner.assign.collect { |friend| friend.last }.flatten
 
-    @stats.keys.each do |stat_label|
-      assignments.select { |assigned_stat| stat_label == assigned_stat }.length.should == (@stats[stat_label]["rate"] * 10).floor
+    rates.each do |stat|
+      label = stat.keys.first
+      rate  = stat.values.last
+
+      tags.select { |assigned_tag| label == assigned_tag }.length.should == (rate * 10).floor
     end
   end
 end

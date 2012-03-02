@@ -6,9 +6,10 @@ require "koala"
 require "openssl"
 require "haml"
 
-require "lib/person"
+require "lib/friend"
 require "lib/statistics_assigner"
-require "lib/friends_loader"
+require "lib/friend_loader"
+require "lib/friend_presenter"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
@@ -27,6 +28,19 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     def partial(page, options={ })
       haml page, options.merge!(:layout => false)
     end
+
+    def rates
+      @stats.collect { |k, v| { k => v["rate"] } }
+    end
+
+    def label(tag)
+      mappings = {
+        "violent_crime" => "important",
+        "unemployed" => "warning",
+        "dropout" => "success",
+        "poverty" => "info"
+      }[tag]
+    end
   end
 
   get "/" do
@@ -36,18 +50,11 @@ class TheOtherPhiladelphiaApp < Sinatra::Base
     yaml_contents = YAML.load_file("data/#{@city.downcase.gsub(/[^\da-z]/, "_")}.yml")
     @stats = yaml_contents["statistics"]
     @organizations = yaml_contents["organizations"]
-
     @is_logged_in = session["access_token"]
-    @mappings = {
-      "violent_crime" => "important",
-      "unemployed" => "warning",
-      "dropout" => "success",
-      "poverty" => "info"
-    }
 
     if @is_logged_in
-      friends_loader = FriendsLoader.new(session["access_token"], StatisticsAssigner.new(@stats))
-      @friends = friends_loader.get_friends
+      friends = FriendLoader.new(session["access_token"]).get_friends
+      @annotated_friends = FriendPresenter.new(friends, rates)
     end
 
     haml @is_logged_in ? :index : :splash, :layout => :layout

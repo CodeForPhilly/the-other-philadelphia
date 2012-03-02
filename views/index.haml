@@ -22,12 +22,12 @@
 
 -if @is_logged_in
   %ul.thumbnails#friends
-    - @friends.each do |friend|
+    - @annotated_friends.each do |friend|
       %li.thumbnail.friend.span2
         %h3= friend.name
         .picture{ :style => "background-image: url('#{friend.picture}');"}
           - friend.tags.each do |tag|
-            %span{ :class => "label label-#{@mappings[tag]}" }= tag.sub("_", " ").capitalize
+            %span{ :class => "label label-#{label(tag)}" }= tag.sub("_", " ").capitalize
 
 #action.row
   .span12

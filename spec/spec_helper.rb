@@ -14,19 +14,23 @@ module TheOtherPhiladelphiaAppTest
     TheOtherPhiladelphiaApp
   end
 
+  def rates
+    @rates ||= YAML.load_file("data/philadelphia.yml")["statistics"].collect { |k, v| { k => v["rate"] } }
+  end
+
   def facebook_oauth_stubs!
     stub_request(:get, /.*graph\.facebook\.com\/oauth\/access_token.*/).to_return(:body => "access_token=token")
   end
 
   def facebook_friends_stubs!
     batch_requests  = statistic_assigner_friends.collect do |friend|
-      { "method" => "get", "relative_url" => "#{friend[:person]["id"]}/picture?type=large"}
+      { "method" => "get", "relative_url" => "#{friend.id}/picture?type=large"}
     end
     batch_responses = statistic_assigner_friends.collect do |friend|
       {
         "code" => 200, "headers" => [
           { "name" => "Content-Type", "value" => "text/javascript; charset=UTF-8" },
-          { "name" => "Location", "value" => "https://fbcdn.net/photo#{friend[:person]["id"]}.jpg" }
+          { "name" => "Location", "value" => "https://fbcdn.net/photo#{friend.id}.jpg" }
         ], "body" => ""
       }
     end
@@ -47,12 +51,12 @@ module TheOtherPhiladelphiaAppTest
 
   def statistic_assigner_friends
     @statistic_assigner_friends ||= begin
-      stats = YAML.load_file("data/philadelphia_statistics.yml")["statistics"]
+      stats = YAML.load_file("data/philadelphia.yml")["statistics"]
       10.times.collect do |friend_id|
-        {
-          :person     => { "name" => "John Doe", "id" => friend_id.to_s },
-          :statistics => stats.keys.shuffle
-        }
+        Friend.new(
+          :id => friend_id.to_s, :name => "John Doe",
+          :tags => stats.keys.shuffle
+        )
       end
     end
   end

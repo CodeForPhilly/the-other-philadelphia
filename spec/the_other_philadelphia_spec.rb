@@ -6,8 +6,12 @@ describe "The Other Philadelphia App" do
       facebook_oauth_stubs!
       facebook_friends_stubs!
 
-      FriendsLoader.any_instance.stub(:get_friends).and_return(
-        [ Person.new("John Doe", "https://fbcdn.net/photo.jpg", [ "violent_crime", "poverty" ])]
+      FriendPresenter.any_instance.stub(:each).and_yield(
+        Friend.new(
+          :id => 1, :name => "John Doe",
+          :picture => "https://fbcdn.net/photo.jpg",
+          :tags => [ "violent_crime", "poverty" ]
+        )
       )
     end
 
