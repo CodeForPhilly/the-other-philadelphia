@@ -14,9 +14,6 @@ class FriendLoader
   #
   # Examples
   #
-  #   friends     = ["Bob", "Sally"]
-  #   statistics  = [{"cute"=>0.5}]
-  #
   #   loader = FriendLoader.new("token")
   #   p loader.get_friends
   #
